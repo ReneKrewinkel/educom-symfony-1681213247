@@ -24,8 +24,8 @@ class OptredenController extends AbstractController
 
         $optreden = [
             "poppodium_id" => 1,
-            "hoofdprogramma_id" => 1, 
-            "voorprogramma_id" => 2,
+            "hoofdprogramma_id" => 3, 
+            "voorprogramma_id" => 3,
             "omschrijving" => "Een avondje blues uit het boekje...",
             "datum" => "2022-07-14",
             "prijs" => 3800,
@@ -58,11 +58,11 @@ class OptredenController extends AbstractController
     //     $result = $rep->saveOptreden($optreden);
     //     dd($result);
     // }
-        public function deleteOptreden(){
-            $rep = $this->getDoctrine()->getRepository(Optreden::class);
-            $result = $rep->deleteOptreden(1);
-            dd($result);
-        }
+        // public function deleteOptreden(){
+        //     $rep = $this->getDoctrine()->getRepository(Optreden::class);
+        //     $result = $rep->deleteOptreden(1);
+        //     dd($result);
+        // }
 
     
 }

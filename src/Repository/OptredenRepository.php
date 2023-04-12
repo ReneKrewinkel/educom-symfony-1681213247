@@ -52,7 +52,7 @@ class OptredenRepository extends ServiceEntityRepository
             $optreden = new Optreden();
         }
         
-        $optreden->setPodium($params["poppodium"]);
+        $optreden->setPoppodium($params["poppodium"]);
         $optreden->setArtiest($params["hoofdprogramma"]);
         $optreden->setVoorprogramma($params["voorprogramma"]);
         $optreden->setOmschrijving($params["omschrijving"]);
