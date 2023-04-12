@@ -108,7 +108,7 @@ class Poppodium
         return $this->telefoonnummer;
     }
 
-    public function setTelefoonnummer(int $telefoonnummer): self
+    public function setTelefoonnummer(string $telefoonnummer): self
     {
         $this->telefoonnummer = $telefoonnummer;
 

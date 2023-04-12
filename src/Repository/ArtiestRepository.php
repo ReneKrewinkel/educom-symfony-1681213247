@@ -39,6 +39,35 @@ class ArtiestRepository extends ServiceEntityRepository
         }
     }
 
+    public function saveArtiest($params) {
+        
+        $artiest = new Artiest();
+        $artiest->setNaam($params["naam"]);
+        $artiest->setGenre($params["genre"]);
+        $artiest->setOmschrijving($params["omschrijving"]);
+        $artiest->setAfbeeldingUrl($params["afbeelding_url"]);
+        $artiest->setWebsite($params["website"]);
+
+        $this->_em->persist($artiest);
+        $this->_em->flush();
+
+        return($artiest);
+    }
+
+    public function fetchArtiest($id) {
+        return($this->find($id));
+    }
+
+    public function deleteArtiest($id) {
+        $artiest = $this->find($id);
+        if($artiest) {
+            $this->_em->remove($artiest);
+            $this->_em->flush();
+            return(true);
+        }
+        return(false);
+    }
+
 //    /**
 //     * @return Artiest[] Returns an array of Artiest objects
 //     */

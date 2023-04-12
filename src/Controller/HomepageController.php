@@ -7,18 +7,20 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-
+use App\Entity\Optreden;
 
 
 #[Route('/')]
-class HomepageController extends BaseController
+class HomepageController extends AbstractController
 {
     #[Route('/', name: 'homepage')]
-
-    #[Template()]
     public function index()
     {
-        return ['controller_name' => 'HomepageController'];
+        $rep = $this->getDoctrine()->getRepository(Optreden::class);
+        $data = $rep->getAllOptredens();
+
+        dump($data);
+        die();
     }
 
     #[Route('/save-data', name:'homepage_save_data')]
