@@ -46,17 +46,17 @@ class OptredenRepository extends ServiceEntityRepository
 
     public function saveOptreden($params) {
 
-        $optreden = new Optreden();
-        
-        $optreden->setPoppodium($this->fetchPoppodium($params["poppodium_id"]));
-        $optreden->setArtiest($this->fetchArtiest($params["hoofdprogramma_id"]));
-
-        if(isset($params["voorprogramma_id"])) {
-            $optreden->setVoorprogramma($this->fetchArtiest($params["voorprogramma_id"]));
+        if(isset($params["id"]) && $params["id"] != "") {
+            $optreden = $this->find($params["id"]);
+        } else {
+            $optreden = new Optreden();
         }
+        
+        $optreden->setPodium($params["poppodium"]);
+        $optreden->setArtiest($params["hoofdprogramma"]);
+        $optreden->setVoorprogramma($params["voorprogramma"]);
         $optreden->setOmschrijving($params["omschrijving"]);
-        $optreden->setDatum(new \DateTime($params["datum"]));
-
+        $optreden->setDatum($params["datum"]);
         $optreden->setPrijs($params["prijs"]);
         $optreden->setTicketUrl($params["ticket_url"]);
         $optreden->setAfbeeldingUrl($params["afbeelding_url"]);
@@ -68,19 +68,43 @@ class OptredenRepository extends ServiceEntityRepository
         
     }
 
+    // public function saveOptreden($params) {
 
-    public function deleteOptreden($id) {
+    //     $optreden = new Optreden();
+        
+    //     $optreden->setPoppodium($this->fetchPoppodium($params["poppodium_id"]));
+    //     $optreden->setArtiest($this->fetchArtiest($params["hoofdprogramma_id"]));
+
+    //     if(isset($params["voorprogramma_id"])) {
+    //         $optreden->setVoorprogramma($this->fetchArtiest($params["voorprogramma_id"]));
+    //     }
+    //     $optreden->setOmschrijving($params["omschrijving"]);
+    //     $optreden->setDatum(new \DateTime($params["datum"]));
+
+    //     $optreden->setPrijs($params["prijs"]);
+    //     $optreden->setTicketUrl($params["ticket_url"]);
+    //     $optreden->setAfbeeldingUrl($params["afbeelding_url"]);
+
+    //     $this->_em->persist($optreden);
+    //     $this->_em->flush();
+
+    //     return($optreden);
+        
+    // }
+
+
+    // public function deleteOptreden($id) {
     
-        $optreden = $this->find($id);
-        if($optreden) {
-            $this->_em->remove($optreden);
-            $this->_em->flush();
-            
-            $this->artiestRepository->deleteArtiest($optreden->getArtiest()->getId());
-            $this->artiestRepository->deleteArtiest($optreden->getVoorprogramma()?->getId());
-            return(true);
-        }
+    //     $optreden = $this->find($id);
+    //     if($optreden) {
+    //         $this->_em->remove($optreden);
+    //         $this->_em->flush();
+
+    //         $this->artiestRepository->deleteArtiest($optreden->getArtiest()->getId());
+    //         $this->artiestRepository->deleteArtiest($optreden->getVoorprogramma()?->getId());
+    //         return(true);
+    //     }
     
-        return(false);
-    }
+    //     return(false);
+    // }
 }
