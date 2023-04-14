@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Service\OptredenService;
 
 
-#[Route('/optreden', name: 'optreden_save')]
+#[Route('/optreden', name: 'optreden')]
 class OptredenController extends AbstractController
 {
      private $os; 
@@ -37,6 +37,14 @@ class OptredenController extends AbstractController
         dd($result);
 
     }
+
+    #[Route('/showAll', name: 'showAllOptreden')]
+    public function showAllOptreden() {
+
+        
+    }
+
+    
     // public function saveOptreden() {
 
     //     $rep = $this->getDoctrine()->getRepository(Optreden::class);
