@@ -1,0 +1,17 @@
+<data>
+{% block body %}
+
+    {% for optreden in optredens %}
+        <optreden>
+            <poppodium> {{optreden.poppodium.naam}} </poppodium>
+            <voorpramma> {{optreden.artiest.naam}} </voorpramma>
+            <omschrijving> {{optreden.omschrijving}} </omschrijving>
+            <datum> {{optreden.datum|date('y-m-d H:i')}} </datum>
+            <prijs> {{optreden.prijs}} </prijs>
+            <ticketUrl> {{optreden.ticketUrl}} </ticketUrl>
+            <afbeeldingUrl> {{optreden.afbeeldingUrl}} </afbeeldingUrl>
+        </optreden>
+    {% endfor %}
+
+{% endblock %}
+</data>

@@ -8,6 +8,9 @@ use Symfony\Component\Routing\Annotation\Route;
 
 
 use App\Service\OptredenService;
+use App\Entity\Optreden;
+use App\Entity\Artiest;
+use App\Entity\Poppodium;
 
 
 #[Route('/optreden', name: 'optreden')]
@@ -38,13 +41,22 @@ class OptredenController extends AbstractController
 
     }
 
-    #[Route('/showAll', name: 'showAllOptreden')]
-    public function showAllOptreden() {
-
+    #[Route('/showAll.{_format}', name: 'showAllOptreden', requirements: ['_format' => 'xml|json'])]
+    public function showAllOptreden($_format) {
         
+        $rep = $this->getDoctrine()->getRepository(Optreden::class);
+        $optredens = $rep->getAllOptredens();
+        // dd($data);
+
+        if ($_format === 'xml' ){
+            return $this->render('homepage/format.xml.twig', ['optredens' => $optredens]);
+        } else {
+            return $this->render('homepage/format.json.twig', ['optredens' => $optredens]);
+        }
+
+
     }
 
-    
     // public function saveOptreden() {
 
     //     $rep = $this->getDoctrine()->getRepository(Optreden::class);
